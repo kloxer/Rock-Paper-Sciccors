@@ -9,7 +9,7 @@ function getComputerChoice(){
 
     }
     if (choice == 2){
-        return "sciccors";
+        return "scissors";
     }
 
 }
@@ -19,10 +19,10 @@ function playRound(playerSelection, computerSelection){
     {
         return 0;
     }
-    if (playerSelection == "paper" && computerSelection == "sciccors"){
+    if (playerSelection == "paper" && computerSelection == "scissors"){
         return 0;
     }
-    if (playerSelection == "sciccors" && computerSelection == "rock")
+    if (playerSelection == "scissors" && computerSelection == "rock")
     {
         return 0;
     }
@@ -34,33 +34,101 @@ function playRound(playerSelection, computerSelection){
         return 2;
     }
 }
+let playerWins = 0;
+let computerWins = 0;
+let ties = 0;
+
+function winner(){
+
+    const resultupdate = document.querySelector("#result");
+    if (playerWins == 5){
+        resultupdate.textContent = "Player wins best out of 5!";
+
+    }
+    else{
+        resultupdate.textContent = "Computer wins best out of 5!";
+    }
+    console.log("we have a winner, max 5 games");
+    playerWins =0;
+    computerWins = 0;
+    ties = 0;
+
+}
 
 function game(playerSelection){
-    let playerWins = 0;
-    let computerWins = 0;
-    let ties = 0;
+    const resultupdate = document.querySelector("#result");
 
-    for (let index = 0; index < 5; index++) {
+
+
+
+
         let computerSelection = getComputerChoice();
-        let playerSelection = prompt("Enter rock, paper or sciccors ").toLowerCase();
+        const computerchoiceupdate = document.querySelector("#computerAnswer");
+        computerchoiceupdate.textContent = computerSelection;
         console.log("your choice: " + playerSelection + " computerChoice: "+ computerSelection);
 
         let plays = playRound(playerSelection, computerSelection);
+        const computerupdate = document.querySelector("#computer");
+        const playerupdate = document.querySelector("#userscore");
+
         if (plays == 0){
             computerWins = computerWins + 1;
+            computerupdate.textContent = computerWins;
+
         }
         else if (plays == 1){
+
             ties = ties + 1;
         }
         else{
             playerWins = playerWins + 1;
+            playerupdate.textContent = playerWins;
         }
         
-    }
+        if ((playerWins  == 5) || (computerWins == 5)){
+            winner();
+            computerupdate.textContent = computerWins;
+            playerupdate.textContent = playerWins;
 
-    return "playerWins = " + playerWins + " Computer Wins: " + computerWins + " Ties : " + ties;
+
+        }
+        else{
+            resultupdate.textContent= "Ties : " + ties;
+
+        }
+
+
 
 }
 
 
-console.log(game());
+const buttons = document.querySelectorAll('button');
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+
+    // and for each one we add a 'click' listener
+    button.addEventListener('click', () => {
+      console.log(button.id);
+      let choice = "";
+
+      if (button.id == "Rock")
+      {
+        choice = "rock";
+      }
+      else if (button.id == "Paper"){
+        choice = "paper";
+      }
+      else{
+        choice = "scissors";
+      }
+
+
+      console.log(game(choice));
+
+
+
+
+
+    });
+  });
