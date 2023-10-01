@@ -4,7 +4,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 2vh;
+    padding-top: 1vh;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
@@ -23,7 +23,7 @@ body{
 
 
 .list{
-    padding-top: 30px;
+    padding-top: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +36,7 @@ h2{
 .buttons{
     display: flex;
     gap:4vh;
-    padding:20px 0 0 0;
+    padding:10px 0 0 0;
 }
 
 
@@ -45,3 +45,29 @@ button{
     font-size: 4vh;
 }
 
+.game{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.playernames{
+    display:flex;
+    gap:2vh;
+
+}
+
+.player, .player2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 20vh;
+}
+
+.userscore, .computer {
+    border-style: solid;
+    padding: 0px 60px 0px 60px;
+    min-width: 8vh;
+    justify-content: center;
+    margin-top: 1vh; /* Add margin to separate the labels from the scores */
+}
